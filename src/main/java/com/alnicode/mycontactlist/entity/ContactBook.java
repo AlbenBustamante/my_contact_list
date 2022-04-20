@@ -22,6 +22,8 @@ import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 import lombok.Data;
 
+import static com.alnicode.mycontactlist.util.AppConstants.DATE_TIME_FORMAT;
+
 @Data
 @Entity
 @Table(name = "contact_books")
@@ -35,7 +37,7 @@ public class ContactBook {
     @Size(min = 5, max = 120)
     private String name;
 
-    @DateTimeFormat(iso = ISO.DATE_TIME, pattern = "")
+    @DateTimeFormat(iso = ISO.DATE_TIME, pattern = DATE_TIME_FORMAT)
     @Column(name = "creation_date")
     private LocalDateTime date;
 
