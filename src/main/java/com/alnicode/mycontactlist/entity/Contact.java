@@ -43,7 +43,7 @@ public class Contact {
     private String email;
 
     @NotNull
-    @Size(min = 30, max = 300)
+    @Size(min = 20, max = 300)
     private String direction;
 
     @NotNull
