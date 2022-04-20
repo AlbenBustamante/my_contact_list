@@ -31,6 +31,7 @@ public class Contact {
 
     @NotNull
     @Size(min = 3, max = 100)
+    @Column(name = "last_name")
     private String lastname;
 
     @NotNull
