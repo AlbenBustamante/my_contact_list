@@ -1,7 +1,9 @@
 package com.alnicode.mycontactlist.entity;
 
+import static com.alnicode.mycontactlist.util.AppConstants.DATE_TIME_FORMAT;
+
 import java.time.LocalDateTime;
-import java.util.HashSet;
+import java.util.Collections;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -22,8 +24,6 @@ import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 import lombok.Data;
 
-import static com.alnicode.mycontactlist.util.AppConstants.DATE_TIME_FORMAT;
-
 @Data
 @Entity
 @Table(name = "contact_books")
@@ -42,7 +42,7 @@ public class ContactBook {
     private LocalDateTime date;
 
     @OneToMany(mappedBy = "book", fetch = FetchType.LAZY, cascade = { CascadeType.ALL })
-    private Set<Contact> contacts = new HashSet<>();
+    private Set<Contact> contacts = Collections.emptySet();
 
     @PrePersist
     public void setCreationDate() {
