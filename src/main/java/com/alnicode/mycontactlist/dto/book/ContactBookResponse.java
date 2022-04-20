@@ -12,4 +12,7 @@ public class ContactBookResponse {
 
     @NotBlank
     private String name;
+
+    @NotBlank
+    private String date;
 }
