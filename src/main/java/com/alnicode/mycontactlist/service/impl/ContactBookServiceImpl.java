@@ -13,6 +13,7 @@ import com.alnicode.mycontactlist.service.IContactBookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class ContactBookServiceImpl extends DeleteService<ContactBook> implements IContactBookService {
@@ -22,21 +23,25 @@ public class ContactBookServiceImpl extends DeleteService<ContactBook> implement
     @Autowired
     private IContactBookMapper mapper;
 
+    @Transactional
     @Override
     public ContactBookResponse save(ContactBookRequest request) {
         return this.mapper.toResponse(this.repository.save(this.mapper.toEntity(request)));
     }
 
+    @Transactional(readOnly = true)
     @Override
     public List<ContactBookResponse> getAll() {
         return this.mapper.toResponses(this.repository.findAll());
     }
 
+    @Transactional(readOnly = true)
     @Override
     public Optional<ContactBookResponse> get(long id) {
         return this.repository.findById(id).map(mapper::toResponse);
     }
 
+    @Transactional
     @Override
     public Optional<ContactBookResponse> update(long id, ContactBookRequest request) {
         var toFind = this.repository.findById(id);

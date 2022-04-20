@@ -13,6 +13,7 @@ import com.alnicode.mycontactlist.service.IContactService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class ContactServiceImpl extends DeleteService<Contact> implements IContactService {
@@ -22,21 +23,25 @@ public class ContactServiceImpl extends DeleteService<Contact> implements IConta
     @Autowired
     private IContactMapper mapper;
 
+    @Transactional
     @Override
     public ContactResponse save(ContactRequest request) {
         return this.mapper.toResponse(this.repository.save(this.mapper.toEntity(request)));
     }
 
+    @Transactional(readOnly = true)
     @Override
     public List<ContactResponse> getAll() {
         return this.mapper.toResponses(this.repository.findAll());
     }
 
+    @Transactional(readOnly = true)
     @Override
     public Optional<ContactResponse> get(long id) {
         return this.repository.findById(id).map(mapper::toResponse);
     }
 
+    @Transactional
     @Override
     public Optional<ContactResponse> update(long id, ContactRequest request) {
         if (!this.repository.existsById(id)) {
@@ -49,11 +54,13 @@ public class ContactServiceImpl extends DeleteService<Contact> implements IConta
         return Optional.of(this.mapper.toResponse(this.repository.save(entity)));
     }
 
+    @Transactional(readOnly = true)
     @Override
     public Optional<List<ContactResponse>> getByBookId(long bookId) {
         return this.repository.findByBookId(bookId).map(mapper::toResponses);
     }
 
+    @Transactional(readOnly = true)
     @Override
     public Optional<List<ContactResponse>> getByName(String name) {
         return this.repository.findByName(name).map(mapper::toResponses);
