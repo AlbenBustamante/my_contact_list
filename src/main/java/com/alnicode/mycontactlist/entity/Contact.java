@@ -2,10 +2,15 @@ package com.alnicode.mycontactlist.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -39,4 +44,14 @@ public class Contact {
     @NotNull
     @Size(min = 30, max = 300)
     private String direction;
+
+    @NotNull
+    @Min(1L)
+    @Max(Long.MAX_VALUE)
+    @Column(name = "contact_book_id")
+    private Long bookId;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "contact_book_id", insertable = false, updatable = false)
+    private ContactBook book;
 }

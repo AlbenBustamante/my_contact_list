@@ -1,12 +1,17 @@
 package com.alnicode.mycontactlist.entity;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -33,6 +38,9 @@ public class ContactBook {
     @DateTimeFormat(iso = ISO.DATE_TIME, pattern = "")
     @Column(name = "creation_date")
     private LocalDateTime date;
+
+    @OneToMany(mappedBy = "book", fetch = FetchType.LAZY, cascade = { CascadeType.ALL })
+    private Set<Contact> contacts = new HashSet<>();
 
     @PrePersist
     public void setCreationDate() {
