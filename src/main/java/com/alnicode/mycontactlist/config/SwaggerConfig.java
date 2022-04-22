@@ -27,7 +27,7 @@ public class SwaggerConfig {
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
                 .title("My Contact List")
-                .description("This is and RESTful API about a simple contact book. Made with Spring Boot.")
+                .description("It's a RESTful API made with Spring Boot, where you can create and organize your contacts in different contact books.")
                 .version("1.0")
                 .build();
     }

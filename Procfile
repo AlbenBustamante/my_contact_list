@@ -1,0 +1,1 @@
+web: java -jar -Dspring.profiles.active=pdn target/my-contact-list-1.0.war

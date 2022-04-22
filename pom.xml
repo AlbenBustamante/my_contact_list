@@ -10,10 +10,10 @@
 	</parent>
 	<groupId>com.alnicode</groupId>
 	<artifactId>my-contact-list</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0</version>
 	<packaging>war</packaging>
 	<name>my-contact-list</name>
-	<description>Demo project for Spring Boot</description>
+	<description>It's a RESTful API made with Spring Boot, where you can create and organize your contacts in different contact books.</description>
 	<properties>
 		<java.version>11</java.version>
 		<mapstruct.version>1.4.2.Final</mapstruct.version>
