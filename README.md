@@ -14,8 +14,8 @@ It is quite an easy and practical application to use, made for educational and p
 
 You can access the application here: 
 - https://alnicode-my-contact-list.herokuapp.com/mycontactlist/api/swagger-ui/
-`username: my_admin`
-`password: adminroot123`
+- `username: my_admin`
+- `password: adminroot123`
 
 ### How did I do it?
 
